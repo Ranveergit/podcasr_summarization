@@ -3,6 +3,6 @@ streamlit
 google-generativeai
 python-dotenv
 pathlib
-pymongo
+pymongo[srv]==3.12
 elevenlabs
 certifi
