@@ -4,7 +4,9 @@ from elevenlabs.client import ElevenLabs
 from pymongo import MongoClient
 from datetime import datetime
 import os
+import certifi
 from youtube_transcript_api import YouTubeTranscriptApi
+
 
 GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
 ELEVENLABS_API_KEY = st.secrets["ELEVENLABS_API_KEY"]
@@ -15,7 +17,7 @@ genai.configure(api_key=GOOGLE_API_KEY)
 client = ElevenLabs(api_key=ELEVENLABS_API_KEY)
 
 # MongoDB Atlas connection setup
-client_mongo = MongoClient(MONGODB_URI)  # MongoDB connection URI
+client_mongo = MongoClient(MONGODB_URI,tlsCAFile=certifi.where())  # MongoDB connection URI
 db = client_mongo.summaries_db  # Database name
 summaries_collection = db.summaries  # Collection name
 
